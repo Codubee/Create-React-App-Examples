@@ -1,25 +1,26 @@
 import React from 'react';
+import axios from 'axios'
 
 class ApiCall extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { isLoaded: false, name: '', age: '', data: null };
+        this.state = { name: '', age: '' };
         this.handleChange = this.handleChange.bind(this);
         this.callApi = this.callApi.bind(this);
     }
-    
+
     handleChange(event) { this.setState({ name: event.target.value }); }
 
     callApi() {
 
-        fetch("https://api.agify.io?name=" + this.state.name)
-            .then(res => res.json())
-            .then(data => {
-                this.setState({ age: data.age })
-                console.log(data);
+        axios.get("https://api.agify.io?name=" + this.state.name)
+            .then((response) => {
+                console.log(response);
+                this.setState({
+                    age: response.data.age
+                })
             })
-            .catch(console.log)
     }
 
 

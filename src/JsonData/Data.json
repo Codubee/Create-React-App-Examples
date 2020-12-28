@@ -1,0 +1,22 @@
+[
+    {
+        "personal_data":{
+            "name":"Henry",
+            "age":100
+        },
+        "occupation":{
+            "job":"retired",
+            "salary":"100"
+        }
+    },
+    {
+        "personal_data":{
+            "name":"John",
+            "age":45
+        },
+        "occupation":{
+            "job":"postal worker",
+            "salary":"9"
+        }
+    }
+]

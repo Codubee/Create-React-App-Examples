@@ -1,12 +1,16 @@
 import React from 'react'
 
 function ShowObject(){
-    const people = {firstName:"Luis",lastName:"Doe",age:24}
+    //Create a javascript object
+    const person = {firstName:"Luis",lastName:"Doe",age:24}
     return(
         <div>
-            <h1>{people.firstName}</h1>
-            <h1>{people.lastName}</h1>
-            <h1>{people.age}</h1>
+            <h1>Single Object</h1>
+            {/*
+                Use curly braces to get the data from the 
+                javascript object created above
+            */}
+            <p>{person.firstName},{person.lastName},{person.age} </p>
         </div>
     )
     

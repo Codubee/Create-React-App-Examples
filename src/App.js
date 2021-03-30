@@ -1,10 +1,14 @@
 import React from 'react';
 import './App.css';
+import ShowArray from './ShowArray/ShowArray';
 import ShowObject from './ShowObject/ShowObject';
 
 function App() {
   return (
-    <ShowObject/>
+    <div>
+      <ShowObject />
+      <ShowArray />
+    </div>
   );
 }
 

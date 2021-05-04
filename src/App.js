@@ -14,7 +14,7 @@ function App() {
     <Router>
     <Switch>
       <Route path="/" exact component={Temp}/>
-      <Route path="/api" component={Api} />
+      <Route path="/newPath" component={Api} />
     </Switch>
   </Router>
   );

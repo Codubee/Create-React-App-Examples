@@ -1,29 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+
+// Import the API component that has the API request
 import Api from './Api/Api'
+
+// This import handles the navigation of the application
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
+import Landing from './Landing/Landing';
 
 function App() {
   return (
     
+    // The router and switch allow us to navigate to different pages
     <Router>
     <Switch>
-      <Route path="/" exact component={Temp}/>
+
+      {/* The Landing component will be shown at localhost:3000/ */}
+      <Route path="/" exact component={Landing}/>
+
+      {/* The API component will be shown at localhost:3000/newPath */}
       <Route path="/newPath" component={Api} />
     </Switch>
   </Router>
   );
-}
-
-function Temp(){
-  return(
-    <h1 className="App">Hello world!</h1>
-  )
 }
 
 export default App;

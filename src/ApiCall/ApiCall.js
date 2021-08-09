@@ -18,7 +18,7 @@ class ApiCall extends React.Component {
     constructor(props) {
         super(props);
         // Creating a state object with an empty age
-        this.state = { people: '' };
+        this.state = { people: {} };
         /*
             When creating methods in a class component you 
             must bind the 'this' keyword to those methods
@@ -71,7 +71,7 @@ class ApiCall extends React.Component {
          // Sending a DELETE http request. Notice that here there is no body
          // But there is a query parameter
          var queryParam = 1;
-         axios.post("http://java-sample-api-2020.herokuapp.com/addPerson?id="+queryParam)
+         axios.delete("http://java-sample-api-2020.herokuapp.com/deletePerson?id="+queryParam)
 
          // After the request is complete we get a response. This method handles the response.
          .then((response) => {
@@ -92,6 +92,14 @@ class ApiCall extends React.Component {
                 <button onClick={this.triggerPostApi}>Post Request</button>
                 <br></br>
                 <button onClick={this.triggerDeleteApi}>Delete Request</button>
+                <br></br>
+                <h2>Contents of the database are:</h2>
+                {
+                    Object.keys(this.state.people).map((person,idx)=>(
+                        <div key={idx}>{person}: {this.state.people[person].name}, {this.state.people[person].address}</div>
+                    ))
+                }
+                <h5>Do the get request to refresh the table after a post or delete</h5>
             </div>
 
         )

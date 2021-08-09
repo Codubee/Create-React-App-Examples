@@ -18,23 +18,25 @@ class ApiCall extends React.Component {
     constructor(props) {
         super(props);
         // Creating a state object with an empty age
-        this.state = { age: '' };
+        this.state = { people: '' };
         /*
             When creating methods in a class component you 
             must bind the 'this' keyword to those methods
             If you do not do this step then you will not be 
             able to use the 'this' keyword in those methods
         */
-        this.triggerApi = this.triggerApi.bind(this);
+        this.triggerGetApi = this.triggerGetApi.bind(this);
+        this.triggerPostApi = this.triggerPostApi.bind(this);
+        this.triggerDeleteApi = this.triggerDeleteApi.bind(this);
     }
 
     // This method gets called when the user clicks the button.
     // It is not a react lifecycle method. It can be named anything.
     // Here I named it triggerApi to make it clear what the method is doing.
-    triggerApi() {
+    triggerGetApi() {
 
         // Sending a GET http request
-        axios.get("https://api.agify.io?name=John")
+        axios.get("http://java-sample-api-2020.herokuapp.com/getAllPeople")
 
             // After the request is complete we get a response. This method handles the response.
             .then((response) => {
@@ -46,9 +48,37 @@ class ApiCall extends React.Component {
                 this.setState({
                     
                     // Response.data has the data that came back from the GET http request
-                    age: response.data.age
+                    people: response.data
                 })
             })
+    }
+
+    triggerPostApi(){
+         // Sending a POST http request. Notice how here I had to include the body in the request
+         // Remember that POST requests have a BODY
+         var body = {"name":"John Cena","address":"123 cant see me"}
+         axios.post("http://java-sample-api-2020.herokuapp.com/addPerson",body)
+
+         // After the request is complete we get a response. This method handles the response.
+         .then((response) => {
+             // Print the data to the console located in your web browser
+             console.log(response.data);
+         })
+
+    }
+
+    triggerDeleteApi(){
+         // Sending a DELETE http request. Notice that here there is no body
+         // But there is a query parameter
+         var queryParam = 1;
+         axios.post("http://java-sample-api-2020.herokuapp.com/addPerson?id="+queryParam)
+
+         // After the request is complete we get a response. This method handles the response.
+         .then((response) => {
+             // Print the data to the console located in your web browser
+             console.log(response.data);
+         })
+
     }
 
     // Render shows the user the HTML
@@ -56,13 +86,12 @@ class ApiCall extends React.Component {
     render() {
         return (
             <div>
-                <p>Click the button to trigger the API</p>
-
-                {/* Displays a button to the user. When clicked the triggerApi method gets called */}
-                <button onClick={this.triggerApi}>Submit</button>
-
-                {/* Display the age to the user that comes back from the API request */}
-                <h3>Expected Age: {this.state.age}</h3>
+                <p>Click the right button to trigger the API youd like</p>
+                <button onClick={this.triggerGetApi}>Get Request</button>
+                <br></br>
+                <button onClick={this.triggerPostApi}>Post Request</button>
+                <br></br>
+                <button onClick={this.triggerDeleteApi}>Delete Request</button>
             </div>
 
         )
